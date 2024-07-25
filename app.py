@@ -4,8 +4,8 @@ from flask import Flask,render_template,request
 import google.generativeai as palm
 import os
 
-
-palm.configure(api_key="AIzaSyA644cQ_NoWSYnyIQ-4CjkFU_o-zHXNg_o")
+api = os.getenv("MAKERSUITE_API_TOKEN")
+palm.configure(api_key=api)
 model = {"model":"models/chat-bison-001"}
 
 app = Flask(__name__)
@@ -26,7 +26,7 @@ def genAI():
     return(render_template("genAI.html",r=r.last))
 
 @app.route("/DApp",methods=["GET","POST"])
-def genAI():
+def DApp():
     return(render_template("DApp.html"))
 
 if __name__ == "__main__":
